@@ -58,8 +58,7 @@ static NSString *kSearchTerm = @"kSearchTerm";
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     self.KVOController = [[FBKVOController alloc] initWithObserver:self];
-
-
+    [super awakeFromNib];
 }
 
 
@@ -245,7 +244,7 @@ static NSString *kSearchTerm = @"kSearchTerm";
 
 - (void)copyMenuButtonPressed:(UIMenuController *)menuController {
     [self resignFirstResponder];
-    ELLCopyMenuItem *copyMenuItem = [menuController menuItems][0];
+    ELLCopyMenuItem *copyMenuItem = (ELLCopyMenuItem *)[menuController menuItems][0];
     if (copyMenuItem.IOKitText.length) {
         [UIPasteboard generalPasteboard].string = copyMenuItem.IOKitText;
     }
